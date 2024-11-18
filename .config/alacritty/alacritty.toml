@@ -8,10 +8,10 @@ padding.x = 10
 padding.y = 10
 
 decorations = "Buttonless"
-# opacity = 0.85
-# blur = true
+opacity = 0.85
+blur = true
 
 
 [font]
 size = 16
-normal.family = "GeistMono Nerd Font"
+normal.family = "GeistMono Nerd Font Mono"

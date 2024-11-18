@@ -2,6 +2,14 @@ return {
   {
     "catppuccin/nvim",
     lazy = false,
+    opts = {
+      transparent_background = true,
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        float = "transparent",
+      },
+    },
     name = "catppuccin",
     priority = 1000,
     config = function()
@@ -9,7 +17,7 @@ return {
         flavor = "frappe",
         background = {
           light = "latte",
-          dark = "mocha",
+          dark = "frappe",
         },
       })
     end,
@@ -17,7 +25,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "catppuccin",
     },
   },
 }

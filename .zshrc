@@ -20,10 +20,10 @@ fi
 # Source / Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Ad in PowerLevel10k
+# Install Powerlevel10k
 zinit ice depth1; zinit light romkatv/powerlevel10k
 
-# Add in zsh plugins
+# Insall ZSH plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -33,7 +33,7 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::python
-zinit snippet OMZP::tmux
+# zinit snippet OMZP::tmux
 zinit snippet OMZP::command-not-found
 
 # Load completions
@@ -48,8 +48,8 @@ zinit cdreplay -q
 PATH="$PATH":"$HOME/.local/scripts/"
 
 # Keybindings
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+bindkey '^[[A' history-search-backward # Up arrow
+bindkey '^[[B' history-search-forward # Down arrow
 bindkey -s ^f "tmux-sessionizer\n"
 
 # History
@@ -65,10 +65,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Keybindings for up down arrows
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -77,7 +73,16 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Alases
 alias ls='ls --color'
+alias ll='ls -la --color'
 alias c='clear'
+alias br='./gradlew bootRun' # Run gradlew project for SENG
+alias gt='./gradlew test' # Run gradle tests for SENG
+
+# Run dual Nvim configurations
+alias nv='nvim' # default Nvim (lazynvim)
+alias nk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart Nvim
+alias nvl='NVIM_APPNAME=nvim-lazyvim nvim' # Clean lazyvim
+alias nvc='NVIM_APPNAME=nvchad nvim'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -87,3 +92,15 @@ export EDITOR="nvim"
 
 # Configs specific for UC
 source ~/.uc-specific
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+eval "$(jenv init -)"
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# bun completions
+[ -s "/Users/lukes/.bun/_bun" ] && source "/Users/lukes/.bun/_bun"

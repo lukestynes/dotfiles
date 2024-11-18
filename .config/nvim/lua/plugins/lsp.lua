@@ -2,8 +2,8 @@ return {
   -- tools
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
+    opts = {
+      ensure_installed = {
         "stylua",
         "selene",
         "luacheck",
@@ -12,7 +12,18 @@ return {
         "tailwindcss-language-server",
         "typescript-language-server",
         "css-lsp",
-      })
-    end,
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      -- Disable eslint formatting as it's slow and timing out on big projects
+      -- taken from
+      -- https://github.com/LazyVim/LazyVim/pull/4225/files
+      setup = {
+        eslint = function() end,
+      },
+    },
   },
 }
