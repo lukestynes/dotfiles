@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # MacOS make sure homebrew in path
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -52,6 +52,7 @@ bindkey '^[[A' history-search-backward # Up arrow
 bindkey '^[[B' history-search-forward # Down arrow
 bindkey -s ^f "tmux-sessionizer\n"
 
+
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -90,12 +91,22 @@ eval "$(fzf --zsh)"
 # Default editor
 export EDITOR="nvim"
 
+
+# Java
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
+
 # Configs specific for UC
 source ~/.uc-specific
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-eval "$(jenv init -)"
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
+# eval "$(jenv init -)"
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
+
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -104,3 +115,22 @@ export NVM_DIR="$HOME/.nvm"
 
 # bun completions
 [ -s "/Users/lukes/.bun/_bun" ] && source "/Users/lukes/.bun/_bun"
+
+eval "$(starship init zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/lukes/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/lukes/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Added by Antigravity
+export PATH="/Users/lukes/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
